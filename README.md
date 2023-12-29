@@ -44,3 +44,7 @@ The hook returns an object containing the following properties:
 ### Interfaces
 * `Event`: Represents an event with a date property.
 * `Day`: Represents a day in the calendar with properties such as date, format, isSameMonth, isToday, and events.
+
+### Example
+
+[Codesandbox](https://codesandbox.io/p/devbox/calendar-hook-jxpk5v)
