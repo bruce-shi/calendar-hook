@@ -7,7 +7,6 @@ import {
   startOfWeek,
   startOfMonth,
   isSameDay,
-  endOfMonth,
   addDays,
   endOfWeek,
   addWeeks,
@@ -17,9 +16,15 @@ import {
 } from "date-fns";
 import { enUS } from "date-fns/locale";
 import _ from "lodash";
+/**
+ * Represents an event.
+ */
 export interface Event {
   date: Date;
 }
+/**
+ * Represents a day in the calendar.
+ */
 export interface Day {
   date: Date;
   format: string;
@@ -27,7 +32,25 @@ export interface Day {
   isToday: boolean;
   events: Event[];
 }
-export function useCalendar<E extends Event>(events: E[] = []) {
+interface UseCalendarReturnType {
+  days: Day[];
+  weekdays: string[];
+  next: () => void;
+  prev: () => void;
+  setView: React.Dispatch<React.SetStateAction<"month" | "week">>;
+  current: Date;
+  setCurrent: React.Dispatch<React.SetStateAction<Date>>;
+}
+
+/**
+ * Custom hook for managing a calendar.
+ * @template E The type of events in the calendar.
+ * @param events An array of events to initialize the calendar with.
+ * @returns An object with calendar-related functions and data.
+ */
+export function useCalendar<E extends Event>(
+  events: E[] = []
+): UseCalendarReturnType {
   const [current, setCurrent] = useState(new Date());
   const [view, setView] = useState<"month" | "week">("month");
 

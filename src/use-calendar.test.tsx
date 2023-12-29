@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react";
-import { useCalendar } from "./use-calendar";
+import { useCalendar } from "../lib/use-calendar";
 import { expect, test } from "vitest";
 
 test("should return 7 weekdays", () => {
